@@ -17,20 +17,70 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        # compare input value with the value of the node
+        # if the value < Nodes value we neet to go left
+        if value < self.value:
+
+        # if there is no left child we can park the value in a node
+            if self.left is None:
+        # if there is no node to compare input value to we can wrap the value in a BSTNode and park it
+                    self.left = BSTNode(value)
+        #otherwise there is a child
+            else:
+        # call the left childs "insert" method
+                    self.left.insert(value)
+
+# otherwise, value >= nodes value we need to go right
+        else:
+# if there is no right child we can park the value in a node
+            if self.right is None:
+               self.right = BSTNode(value)
+# otherwise there is a child
+            else:
+# call the right childs insert method
+                self.right.insert(value)
+
+
+                    
+    
+
+
+
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        if self.value == target:
+            return True
+        if target < self.value:
+            if self.Left is None:
+                return False
+            else:
+                return self.left.contains(target)
+        else:
+            if self.right is None:
+                return False
+            else:
+                return self.right.contains(target)     
+            
+
+            
+
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        if self.right is None:
+            return self.value
+        else:
+            return self.right.get_max()
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+        fn(self.value)
+        if self.left:
+            self.left.for_each(fn)
+        if self.right:
+            self.right.for_each(fn)
 
     # Part 2 -----------------------
 
